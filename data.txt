@@ -1,3 +1,0 @@
-madeira = 25
-pedra = 10
-comida = 10
