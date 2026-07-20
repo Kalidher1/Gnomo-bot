@@ -1,11 +1,10 @@
-import discord
-from discord.ext import commands,tasks
-import json
 import os
+import discord
+from discord.ext import commands
 from random import randint
-from discord.voice_client import VoiceClient
-import asyncio
-from time import sleep
+from dotenv import load_dotenv
+
+_ = load_dotenv()
 
 indexLista = 0
 
@@ -30,8 +29,7 @@ async def ajuda(ctx):
     embed=discord.Embed(title="Comandos do Gnomo", description="Temos os seguintes comandos do GNOMO BOT", color=0x6c25be)
     embed.add_field(name = "Geral", value ="⠀\n● !ajuda = Mostra os comandos do Gnomo\n", inline = True)
     embed.add_field(name = "Entretenimento", value ="⠀\n● !morra = morro\n", inline = True)          
-    embed.add_field(name = "Rpg", value =
-                    + "● !atributo = Rola atributos iniciais\n"
+    embed.add_field(name = "Rpg", value = "⠀\n● !atributo = Rola atributos iniciais\n"
                     + "● !livros = Mostra os Livros do cenário de Higalas", inline = False)  
     embed.set_author(name="O Gnomo", icon_url="https://i.imgur.com/xR3qHfp.png")
     embed.set_footer(text="Pedido por: {}".format(ctx.author.display_name))
@@ -113,7 +111,13 @@ async def livros(ctx):
         inline=False
     )
 
-    embed.set_author(text="Gnomo Bot • Biblioteca", icon_url="https://i.imgur.com/xR3qHfp.png")
+    embed.set_author(name="Gnomo Bot • Biblioteca", icon_url="https://i.imgur.com/xR3qHfp.png")
     embed.set_footer(text="Pedido por: {}".format(ctx.author.display_name))
     await ctx.send(embed=embed)
         
+if __name__ == '__main__':
+    TOKEN = os.getenv('TOKEN')
+    if not TOKEN:
+        print('Error: set the TOKEN environment variable with your bot token')
+    else:
+        bot.run(TOKEN)
